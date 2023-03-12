@@ -679,13 +679,13 @@ contract Poaster is Context, IERC20, Ownable {
     address[] private _excluded;
    
     uint256 private constant MAX = ~uint256(0);
-    uint256 private _tTotal = 1000000 * (10**18);
+    uint256 private _tTotal = 1000000 * (10**12);
     uint256 private _rTotal = (MAX - (MAX % _tTotal));
     uint256 private _tFeeTotal;
 
     string private _name = "Poaster";
     string private _symbol = "POAST";
-    uint8 private _decimals = 18;
+    uint8 private _decimals = 12;
     
     uint256 public _taxFee = 0;
     uint256 private _previousTaxFee = _taxFee;
@@ -699,13 +699,13 @@ contract Poaster is Context, IERC20, Ownable {
 
     uint256 public _marketingFee = 0;
     uint256 private _previousMarketingFee = _marketingFee;
-    address payable public marketingWallet = payable(0xEAE7499fDB9a50387fb9522376bf6d889b585da7);
+    address payable public marketingWallet = payable(0x45989118F572399E4838F5295da96626029a7eC1);
 
     IUniswapV2Router02 public  uniswapV2Router;
     address public  uniswapV2Pair;
 
-    uint256 public numTokensSellToAddToLiquidity = 500000 * 10**18;
-    uint256 public _maxTxAmount = 1000000 * 10**18;
+    uint256 public numTokensSellToAddToLiquidity = 500000 * 10**12;
+    uint256 public _maxTxAmount = 1000000 * 10**12;
     
     event MinTokensBeforeSwapUpdated(uint256 minTokensBeforeSwap);
     event SwapAndLiquifyEnabledUpdated(bool enabled);
@@ -723,8 +723,8 @@ contract Poaster is Context, IERC20, Ownable {
     
     constructor() {
         _rOwned[owner()] = _rTotal;
-        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0xbdd4e5660839a088573191A9889A262c0Efc0983); // mainnet router address
-        //IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D); // testnet router address
+        //IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D); // mainnet router address
+        IUniswapV2Router02 _uniswapV2Router = IUniswapV2Router02(0xbdd4e5660839a088573191A9889A262c0Efc0983); // testnet router address
         
         // Create a uniswap pair for this new token
         uniswapV2Pair = IUniswapV2Factory(_uniswapV2Router.factory())
